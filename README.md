@@ -1,0 +1,127 @@
+# penguins-body-mass: Professional Python Project: Repo Self Consistency Checker
+
+[![Docs Site](https://img.shields.io/badge/docs-site-blue?logo=github)](https://applied-models.github.io/penguins-body-mass/)
+[![Repo](https://img.shields.io/badge/repo-GitHub-black?logo=github)](https://github.com/applied-models/penguins-body-mass)
+[![Python 3.15](https://img.shields.io/badge/python-3.15%2B-blue?logo=python)](./pyproject.toml)
+[![License](https://img.shields.io/badge/license-MIT-yellow.svg)](./LICENSE)
+
+[![CI](https://github.com/applied-models/penguins-body-mass/actions/workflows/ci-python-zensical.yml/badge.svg?branch=main)](https://github.com/applied-models/penguins-body-mass/actions/workflows/ci-python-zensical.yml)
+[![Docs-Deploy](https://github.com/applied-models/penguins-body-mass/actions/workflows/deploy-zensical.yml/badge.svg?branch=main)](https://github.com/applied-models/penguins-body-mass/actions/workflows/deploy-zensical.yml)
+[![Pre-Release](https://github.com/applied-models/penguins-body-mass/actions/workflows/pre-release.yml/badge.svg?branch=main)](https://github.com/applied-models/penguins-body-mass/actions/workflows/pre-release.yml)
+[![Release](https://github.com/applied-models/penguins-body-mass/actions/workflows/release-pypi.yml/badge.svg)](https://github.com/applied-models/penguins-body-mass/actions/workflows/release-pypi.yml)
+[![Links](https://github.com/applied-models/penguins-body-mass/actions/workflows/links.yml/badge.svg?branch=main)](https://github.com/applied-models/penguins-body-mass/actions/workflows/links.yml)
+[![Dependabot](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg)](https://github.com/applied-models/penguins-body-mass/security)
+
+> Opinionated professional Python repository self-consistency checker
+
+## Purpose
+
+Professional Python repositories contain many declarations that should agree
+with one another.
+
+Examples include:
+
+- project and package names
+- `src/` package structure
+- `pyproject.toml` metadata
+- command-line entry points
+- Python module paths
+- dependency declarations
+- Python version declarations
+- repository-relative file paths
+- workflow and tooling configuration
+
+Small inconsistencies can remain unnoticed until a command, build, test,
+documentation workflow, or release fails.
+
+`penguins-body-mass` performs deterministic checks for internal repository consistency
+and reports problems that should be reviewed.
+
+## Check a Repository
+
+```shell
+# check the current repository
+uvx penguins-body-mass
+
+# check using the latest published version
+uvx penguins-body-mass@latest
+```
+
+A successful check returns exit code `0`.
+
+A failed consistency check returns a nonzero exit code and reports the
+detected problem.
+
+## Checks
+
+This release checks:
+
+- `pyproject.toml` exists
+- `pyproject.toml` can be read and identifies the project
+- a Python package can be detected when a `src/` layout is present
+- modules referenced by `[project.scripts]` entry points exist
+
+## Developer Command Reference
+
+<details>
+<summary>Show command reference</summary>
+
+### In a machine terminal
+
+Open a machine terminal where you want the project:
+
+```shell
+git clone https://github.com/applied-models/penguins-body-mass
+
+cd penguins-body-mass
+code .
+```
+
+### In a VS Code terminal
+
+```shell
+uv self update
+uv python pin 3.14
+uv python install
+uv lock --upgrade
+uv sync
+
+uv run pre-commit install
+uv run pre-commit autoupdate
+
+git add -A
+uv run pre-commit run --all-files
+# repeat if changes were made
+uv run pre-commit run --all-files
+
+# run locally to test
+uv run python -m penguins_body_mass.app
+
+# types, tests, docs
+uv run ty check
+uv run python -m pytest
+uv run python -m zensical build
+
+# save progress
+git add -A
+git commit -m "update"
+git push -u origin main
+```
+
+</details>
+
+## Documentation
+
+- [Documentation](https://applied-models.github.io/penguins-body-mass/)
+
+## Annotations
+
+[.annotations/annotations.md](./.annotations/annotations.md)
+
+## Citation
+
+[CITATION.cff](./CITATION.cff)
+
+## License
+
+[MIT](./LICENSE)
